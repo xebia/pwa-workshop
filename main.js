@@ -3,7 +3,7 @@ fetch('/news')
   .then(news => {
     const newsList = document.getElementById('news-list');
     newsList.innerHTML = news
-      .map(({ title }) => `<li>${title}</li>`)
+      .map(({ title, time_ago }) => `<li>${title} (${time_ago})</li>`)
       .join('');
   });
 
