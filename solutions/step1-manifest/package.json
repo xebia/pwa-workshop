@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server --proxy https://api.hackerwebapp.com/ -c-1 -o",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/xebia/pwa-workshop#readme",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "koa": "^2.5.1",
+    "koa-proxies": "^0.7.0",
+    "koa-static": "^4.0.3"
   }
 }

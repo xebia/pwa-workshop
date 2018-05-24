@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server --proxy https://api.hackerwebapp.com/ -c-1 -o",
+    "start": "node server.js",
     "generate-sw": "workbox injectManifest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/xebia/pwa-workshop#readme",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "koa": "^2.5.1",
+    "koa-proxies": "^0.7.0",
+    "koa-static": "^4.0.3"
   },
   "devDependencies": {
     "workbox-cli": "^3.2.0"
