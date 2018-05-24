@@ -6,5 +6,3 @@ fetch('/news')
       .map(({ title, time_ago }) => `<li>${title} (${time_ago})</li>`)
       .join('');
   });
-
-console.log('wa')
