@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server --proxy https://api.hackerwebapp.com/ -c-1 -o",
+    "generate-sw": "workbox injectManifest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "homepage": "https://github.com/xebia/pwa-workshop#readme",
   "dependencies": {
     "http-server": "^0.11.1"
+  },
+  "devDependencies": {
+    "workbox-cli": "^3.2.0"
   }
 }
