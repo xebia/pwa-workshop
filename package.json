@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "http-server --proxy https://api.hackerwebapp.com/ -c-1 -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/xebia/pwa-workshop/issues"
   },
-  "homepage": "https://github.com/xebia/pwa-workshop#readme"
+  "homepage": "https://github.com/xebia/pwa-workshop#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
 }
