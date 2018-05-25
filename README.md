@@ -35,3 +35,5 @@ We want to add icons and a splashscreen to our app. A generator can automaticall
 
 ## Add runtime caching to API calls
 
+## Bonus: Stale while revalidate for slow networks
+If you completed the previous exercises your app works great while offline and online. However, when your network is slow the screen will remain empty while the news is loading. This can be solved by displaying the cached version before the network call is completed. The servicer worker will still do the network call in the background. When a server response is returned we will broadcast a message notifying the app that the news was updated. The app can now refresh the news page.
