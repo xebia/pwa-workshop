@@ -25,6 +25,7 @@
     "koa-static": "^4.0.3"
   },
   "devDependencies": {
+    "ngrok": "^3.0.1",
     "workbox-cli": "^3.2.0"
   }
 }

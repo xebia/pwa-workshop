@@ -22,5 +22,8 @@
     "koa": "^2.5.1",
     "koa-proxies": "^0.7.0",
     "koa-static": "^4.0.3"
+  },
+  "devDependencies": {
+    "ngrok": "^3.0.1"
   }
 }
