@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-clear
-
-function resolve_dir {
-    (cd "$1" && pwd)
-}
-
 function run_in_dir {
     echo running
     local dir="$1"
@@ -13,9 +7,7 @@ function run_in_dir {
 
 }
 
-scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-projectdir=$(resolve_dir "$scriptdir"/..)
+projectdir=$(git rev-parse --show-toplevel)
 
 solutiondirs=("$projectdir"/solutions/*)
 
