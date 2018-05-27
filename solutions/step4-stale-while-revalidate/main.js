@@ -1,4 +1,8 @@
 const root = new Promise(resolve => {
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    return resolve(rootElement);
+  }
   document.addEventListener("DOMContentLoaded", () => {
     resolve(document.getElementById('root'));
   });
