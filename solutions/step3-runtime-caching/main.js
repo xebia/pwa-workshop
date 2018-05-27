@@ -1,4 +1,9 @@
-const root = document.getElementById('root');
+const root = new Promise(resolve => {
+  document.addEventListener("DOMContentLoaded", () => {
+    resolve(document.getElementById('root'));
+  });
+});
+
 fetch('/news')
   .then(
     async res => {
@@ -8,15 +13,15 @@ fetch('/news')
 
       const text = await res.text();
       const message = `Received status ${res.status} and body: <pre>${text}</pre>`;
-      root.innerHTML = message;
+      (await root).innerHTML = message;
       throw new Error(message);
     },
-    () => {
-      root.innerHTML = 'Network error while loading news';
+    async () => {
+      (await root).innerHTML = 'Network error while loading news';
     }
   )
-  .then(news => {
-    root.innerHTML = `<ul>${news
+  .then(async news => {
+    (await root).innerHTML = `<ul>${news
       .map(({ title, time_ago }) => `<li>${title} (${time_ago})</li>`)
       .join('')}</ul>`;
   });
