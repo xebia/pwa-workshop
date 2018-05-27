@@ -38,17 +38,16 @@
 </nav>
 <main role="main" class="container">
     <h1>Hacker News</h1>
-    <ul id="news-list">
-    </ul>
+    <section id="root">Loading...</section>
     <script src="main.js" async defer></script>
     <script>
     // Check that service workers are registered
-if ("serviceWorker" in navigator) {
-  // Use the window load event to keep the page load performant
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js")
-  })
-}
+    if ("serviceWorker" in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+      })
+    }
 </script>
 </main>
 </body>

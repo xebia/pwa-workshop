@@ -76,7 +76,7 @@ We're going to use the workbox-cli to generate a service worker which will preca
 
     workbox.precaching.precacheAndRoute([]);
     ```
-3. Run npm i -D workbox-cli
+3. Run `npm i -D workbox-cli`.
 4. Run `./node_modules/.bin/workbox-cli wizard --injectManifest`. Let the wizard cache all files and let it use `sw-src.js` as a source to generate `sw.js`.
 5. Add a npm script called `generate-sw` which runs `workbox-cli injectManifest`.
 6. Run `npm run generate-sw`.

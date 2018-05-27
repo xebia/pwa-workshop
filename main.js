@@ -1,14 +1,22 @@
+const root = document.getElementById('root');
 fetch('/news')
   .then(
-    res => res.json(),
+    async res => {
+      if(res.status === 200) {
+        return res.json();
+      }
+
+      const text = await res.text();
+      const message = `Received status ${res.status} and body: <pre>${text}</pre>`;
+      root.innerHTML = message;
+      throw new Error(message);
+    },
     () => {
-      const newsList = document.getElementById('news-list');
-      newsList.outerHTML = 'Could not load news';
+      root.innerHTML = 'Network error while loading news';
     }
   )
   .then(news => {
-    const newsList = document.getElementById('news-list');
-    newsList.innerHTML = news
+    root.innerHTML = `<ul>${news
       .map(({ title, time_ago }) => `<li>${title} (${time_ago})</li>`)
-      .join('');
+      .join('')}</ul>`;
   });
