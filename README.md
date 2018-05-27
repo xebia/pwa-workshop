@@ -47,7 +47,7 @@ The `instructor-scripts/` directory contains scripts making it easier to update 
 
 We want to add icons and a splashscreen to our app. A generator can automatically create the required resources and provide the required code.
 
-1. Go to the online [favicon generator](https://realfavicongenerator.net/) and generate an icon bundle.
+1. Go to the online [favicon generator](https://realfavicongenerator.net/) and generate an icon bundle. Use the provided icon `icon.png`.
 2. Extract the generated files in the project folder.
 3. Add the generated html snippet to the head of `index.html`.
 4. Set the `name`, `short_name` and `start_url` properties in `site.webmanifest`.
