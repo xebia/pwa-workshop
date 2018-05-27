@@ -4,5 +4,9 @@ workbox.precaching.precacheAndRoute([]);
 
 workbox.routing.registerRoute(
   '/news',
-  workbox.strategies.networkFirst()
+  workbox.strategies.staleWhileRevalidate({
+    plugins: [
+      new workbox.broadcastUpdate.Plugin('api-updates')
+    ]
+  })
 );
