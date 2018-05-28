@@ -1,3 +1,7 @@
+if (/ngrok\.io$/.test(location.host) && location.protocol != 'https:') {
+  location.href = 'https:' + location.href.substring(location.protocol.length);
+}
+
 const root = new Promise(resolve => {
   const rootElement = document.getElementById('root');
   if (rootElement) {
