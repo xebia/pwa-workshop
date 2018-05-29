@@ -59,18 +59,19 @@ provide the required code.
 provided icon `icon.png`.
 2. Extract the generated files in the project folder.
 3. Add the generated html snippet to the head of `index.html`.
-4. Set the `name`, `short_name` and `start_url` properties in `site.webmanifest`.
+4. Set the `name`, `short_name` and `start_url` (`= "/"`) properties in `site.webmanifest`.
 5. Verify the fields in the manifest section of the `application` tab in the chrome devtools. Note the 
 `add to homescreen` link doesn't work yet.
 6. Run a lighthouse check and verify there are no manifest related errors.
-7. Check out the user experience of adding the app on the homescreen of your phone. There will not be an 
-`app install banner` yet, but you can add the app manually to your homescreen.
+7. Check out the user experience of adding the app on the homescreen of your phone, by choosing "Add to Home screen" 
+from the browser's menu. There will not be an `app install banner` yet, but you can add the app manually to your 
+homescreen.
 8. Remove the app from your homescreen again.
 
 ## Step 2: Using workbox to precache files
 We're going to use the workbox-cli to generate a service worker which will precache all requied static resources on 
 installation. workbox-cli will automatically put hashes of the files in the service worker file.
-1. Add this code to `index.html`.
+1. Add this code to the end of the `<main>` section of `index.html`.
     ```js
     <script>
       // Check that service workers are registered
@@ -88,14 +89,16 @@ installation. workbox-cli will automatically put hashes of the files in the serv
 
     workbox.precaching.precacheAndRoute([]);
     ```
-3. Run `npm i -D workbox-cli`.
-4. Run `./node_modules/.bin/workbox-cli wizard --injectManifest`. Let the wizard cache all files and let it use 
-`sw-src.js` as a source to generate `sw.js`.
-5. Add a npm script called `generate-sw` which runs `workbox-cli injectManifest`.
+3. Run `npm i -D workbox-cli` to add workbox command line tools to your `devDependencies`.
+4. Run `./node_modules/.bin/workbox-cli wizard --injectManifest`. And manually choose `.` as the root of your web app.
+Let the wizard cache all files, by pressing `return` (`space` allows you to unselect and select file types), and let it 
+use `sw-src.js` as a source of your service worker to generate `sw.js`.
+5. Add a npm script called `generate-sw` to your `package.json` which runs `workbox injectManifest`.
 6. Run `npm run generate-sw`.
-7. Check out the chrome devtools console to see the workbox debug output. Also see the service werker installed in the 
+7. Check out the chrome devtools console to see the workbox debug output. Also see the service worker installed in the 
 `service worker` section of the `application` tab in the devtools.
-8. Run lighthouse on your ngrok https url and verify you score 100 points for progressive web app!
+8. Run lighthouse on your ngrok https url and verify you score 100 points for progressive web app! (At the time of 
+writing it seems it falsely says no redirect is done to https and it is not fast enough over 3g)
 9. Make a change to `index.html`. See how it is not being picked up by refreshing. Run `npm run generate-sw` again and 
 generate refresh. The change is still not picked up, but the new service worker is shown as `waiting to activate` in 
 the `service worker` devtools section. Close all tabs of the app and re-open them to start using the new service worker. 
