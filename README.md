@@ -117,7 +117,7 @@ after you have finished this workshop. Making changes with service workers take 
 
 ## Step 3: Add runtime caching to API calls
 Although the app is installable and will load while offline it won't show news while offline. Instead it will show 
-`Network error while loading news`. Browser caching would work for this usecase, but we want control over the cache on 
+`Network error while loading news`. Browser caching would work for this use case, but we want control over the cache on 
 the client. For example we want to be able to use a `stale while revalidate` caching strategy in the next exercise.
 Therefore we are going to leverage runtime caching in our workbox serviceworker.
 
@@ -128,11 +128,13 @@ Therefore we are going to leverage runtime caching in our workbox serviceworker.
       workbox.strategies.networkFirst()
     );
     ```
-2. Check the chrome devtools console to verify that workbox is responding to `/news`.
-3. Check the chrome devtools network tab to verify `/news` is fetched by the service worker.
-4. Open the cache section of the `application` tab of the chrome devtools. Find the `precache` and the `runtime` cache.
+2. Regenerate the service worker with `generate-sw`
+3. Check the chrome devtools console to verify that workbox is responding to `/news`.
+4. Check the chrome devtools network tab to verify `/news` is fetched by the service worker.
+5. Open the cache section of the `application` tab of the chrome devtools. Find the `precache` and the `runtime` cache.
 Find the news data in the runtime cache.
-5. Try loading the web app while offline. It should show the previously fetched news!
+6. Try loading the web app while offline, by ticking the `Offline` box under `Application` -> `Service Workers`. It 
+should show the previously fetched news!
 
 
 ## Bonus Step 4: Stale while revalidate for slow networks
