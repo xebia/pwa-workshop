@@ -2,7 +2,7 @@ const Koa = require('koa');
 const koaStatic = require('koa-static');
 const koaProxies = require('koa-proxies');
 
-const enable_changing = false;
+const randomNews = process.argv.length > 2 && process.argv[2] === '--random-news';
 
 const app = new Koa();
 
@@ -13,10 +13,10 @@ app.use(koaStatic('.'));
 let i = 0;
 const titles = ['Some news title', 'Another news title', 'Random news event'];
 app.use((ctx, next) => {
-  if (ctx.path === '/news' && enable_changing) {
+  if (ctx.path === '/news' && randomNews) {
     ctx.body = [{
       title: titles[i],
-      time_ago: Date.now()
+      time_ago: (new Date()).toLocaleString()
     }];
     i = (i + 1) % titles.length;
 

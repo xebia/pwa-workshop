@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "start:random": "node server.js --random-news",
     "expose": "ngrok http 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
