@@ -144,8 +144,8 @@ the network call is completed. The service worker will still do the network call
 response is returned it will be cached and workbox will broadcast a message notifying the app that the news was updated.
 The app can now refresh the news page by retrieving it from the cache.
 
-1. Start the server using `npm run start:random`. This ensures that workbox always has a cache update to broadcast.
-Otherwise not all of your code will run.
+1. Kill (`ctrl+c`) the server and start a different server using `npm run start:random`. This ensures that workbox 
+always has a cache update to broadcast. Otherwise not all of your code will run.
 2. Use the `staleWhileRevalidate` caching strategy together with the `broadcastUpdate` plugin. Read 
 [this guide](https://developers.google.com/web/tools/workbox/modules/workbox-broadcast-cache-update) which explains how
 to do this. You need to update `main.js` to update the view when the cache was updated.
