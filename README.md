@@ -136,5 +136,14 @@ Find the news data in the runtime cache.
 If you completed the previous exercises your app works great while offline and online. However, when your network is 
 slow the screen will remain empty while the news is loading. This can be solved by displaying the cached version before 
 the network call is completed. The servicer worker will still do the network call in the background. When a server 
-response is returned we will broadcast a message notifying the app that the news was updated. The app can now refresh 
-the news page.
+response is returned it will be cached and workbox will broadcast a message notifying the app that the news was updated.
+The app can now refresh the news page by retrieving it from the cache.
+
+Use the `staleWhileRevalidate` caching strategy together wil the `broadcastUpdate` plugin. Read 
+[this guide](https://developers.google.com/web/tools/workbox/modules/workbox-broadcast-cache-update) which explains how
+to do this.
+
+## Bonus Step 5: Improve performance
+We only have a couple lines of code in our application, however we're not getting a 100 points on the performance audit
+of lighthouse. Extract the critical CSS from bootstrap.css and inline it in the html to improve the performance. See if 
+you can get 100 points.
