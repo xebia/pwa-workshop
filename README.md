@@ -72,7 +72,7 @@ homescreen.
 We're going to use the workbox-cli to generate a service worker which will precache all requied static resources on 
 installation. workbox-cli will automatically put hashes of the files in the service worker file.
 1. Add this code to the end of the `<main>` section of `index.html`.
-    ```js
+    ```html
     <script>
       // Check that service workers are registered
       if ('serviceWorker' in navigator) {
@@ -98,10 +98,10 @@ use `sw-src.js` as a source of your service worker to generate `sw.js`.
 7. Check out the chrome devtools console to see the workbox debug output. Also see the service worker installed in the 
 `service worker` section of the `application` tab in the devtools.
 8. Run lighthouse on your ngrok https url and verify you score 100 points for progressive web app! (At the time of 
-writing it seems it falsely says no redirect is done to https and it is not fast enough over 3g)
-9. Make a change to `index.html`. See how it is not being picked up by refreshing. Run `npm run generate-sw` again and 
-generate refresh. The change is still not picked up, but the new service worker is shown as `waiting to activate` in 
-the `service worker` devtools section. Close all tabs of the app and re-open them to start using the new service worker. 
+writing it falsely says no redirect is done to https, see GoogleChrome/lighthouse#2383)
+9. Make a change to `index.html`. See how it is not being picked up by refreshing. Run `npm run generate-sw` again and
+  refresh the page. The change is still not picked up, but the new service worker is shown as `waiting to activate` in
+the `service worker` devtools section. Close all tabs of the app and re-open them to start using the new service worker.
 This is how users update to the new version of the service worker.
 10. Make a change to `index.html` again and run `generate-sw` again. Now update the service worker by using the 
 `skip waiting` link in the service worker devtools section or by clicking the `Update on reload` checkbox. Refresh the 
@@ -113,6 +113,24 @@ after you have finished this workshop. Making changes with service workers take 
 
 
 ## Step 3: Add runtime caching to API calls
+Although the app is installable and will load while offline it won't show news while offline. Instead it will show 
+`Network error while loading news`. Browser caching would work for this usecase, but we want control over the cache on 
+the client. For example we want to be able to use a `stale while revalidate` caching strategy in the next exercise.
+Therefore we are going to leverage runtime caching in our workbox serviceworker.
+
+1. Add this code to `sw.js`
+    ```js
+    workbox.routing.registerRoute(
+      '/news',
+      workbox.strategies.networkFirst()
+    );
+    ```
+2. Check the chrome devtools console to verify that workbox is responding to `/news`.
+3. Check the chrome devtools network tab to verify `/news` is fetched by the service worker.
+4. Open the cache section of the `application` tab of the chrome devtools. Find the `precache` and the `runtime` cache.
+Find the news data in the runtime cache.
+5. Try loading the web app while offline. It should show the previously fetched news!
+
 
 ## Bonus Step 4: Stale while revalidate for slow networks
 If you completed the previous exercises your app works great while offline and online. However, when your network is 
