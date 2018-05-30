@@ -104,8 +104,8 @@ use `sw-src.js` as a source of your service worker to generate `sw.js`.
 writing it falsely says no redirect is done to https, see GoogleChrome/lighthouse#2383)
 9. Make a change to `index.html`. See how it is not being picked up by refreshing. Run `npm run generate-sw` again and
   refresh the page. The change is still not picked up, but the new service worker is shown as `waiting to activate` in
-the `service worker` devtools section. Close all tabs of the app and re-open them to start using the new service worker.
-This is how users update to the new version of the service worker.
+the `application` -> `service worker` devtools section. Close all tabs of the app and re-open them to start using the
+new service worker. This is how users update to the new version of the service worker.
 10. Make a change to `index.html` again and run `generate-sw` again. Now update the service worker by using the 
 `skip waiting` link in the service worker devtools section or by clicking the `Update on reload` checkbox. Refresh the 
 page to see the change. This is how to update the service worker while developing.
