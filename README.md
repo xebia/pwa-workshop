@@ -32,6 +32,9 @@ If you see the static (non-progressive) website on your phone, you are ready to 
 ## Overview
 Running `npm start` serves the current directory. There is no build step.
 
+Running `npm run start:random` starts the same server, but serves random news. This is useful for demonstrating news is
+updated in the background in `Bonus Step 4`.
+
 The `solutions/` directory contains the answers for the exercises. Use this if you did not finish the exercise in 
 time.
 
@@ -135,13 +138,18 @@ Find the news data in the runtime cache.
 ## Bonus Step 4: Stale while revalidate for slow networks
 If you completed the previous exercises your app works great while offline and online. However, when your network is 
 slow the screen will remain empty while the news is loading. This can be solved by displaying the cached version before 
-the network call is completed. The servicer worker will still do the network call in the background. When a server 
+the network call is completed. The service worker will still do the network call in the background. When a server 
 response is returned it will be cached and workbox will broadcast a message notifying the app that the news was updated.
 The app can now refresh the news page by retrieving it from the cache.
 
-Use the `staleWhileRevalidate` caching strategy together wil the `broadcastUpdate` plugin. Read 
+1. Start the server using `npm run start:random`. This ensures that workbox always has a cache update to broadcast.
+Otherwise not all of your code will run.
+2. Use the `staleWhileRevalidate` caching strategy together with the `broadcastUpdate` plugin. Read 
 [this guide](https://developers.google.com/web/tools/workbox/modules/workbox-broadcast-cache-update) which explains how
-to do this.
+to do this. You need to update `main.js` to update the view when the cache was updated.
+3. Note that the user experience suffers when the entire list of news is suddenly replaced. Make it possible for the
+user to chose whether to update or not by adding a "update news" button. The button should only be displayed when the
+cache was updated.
 
 ## Bonus Step 5: Improve performance
 We only have a couple lines of code in our application, however we're not getting a 100 points on the performance audit
