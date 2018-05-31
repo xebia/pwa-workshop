@@ -121,7 +121,7 @@ Although the app is installable and will load while offline it won't show news w
 the client. For example we want to be able to use a `stale while revalidate` caching strategy in the next exercise.
 Therefore we are going to leverage runtime caching in our workbox serviceworker.
 
-1. Add this code to `sw.js`
+1. Add this code to `sw-src.js`
     ```js
     workbox.routing.registerRoute(
       '/news',
