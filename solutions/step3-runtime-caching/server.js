@@ -12,8 +12,9 @@ app.use(koaStatic('.'));
 
 let i = 0;
 const titles = ['Some news title', 'Another news title', 'Random news event'];
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
   if (ctx.path === '/news' && randomNews) {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     ctx.body = [{
       title: titles[i],
       time_ago: (new Date()).toLocaleString()
