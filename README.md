@@ -100,7 +100,7 @@ use `sw-src.js` as a source of your service worker to generate `sw.js`.
 6. Run `npm run generate-sw`.
 7. Check out the chrome devtools console to see the workbox debug output. Also see the service worker installed in the 
 `service worker` section of the `application` tab in the devtools.
-8. Run lighthouse on your ngrok https url and verify you score 100 points for progressive web app! (At the time of 
+8. Run lighthouse on your ngrok https url and verify you score 91 points for progressive web app! (At the time of 
 writing it falsely says no redirect is done to https, see GoogleChrome/lighthouse#2383)
 9. Make a change to `index.html`. See how it is not being picked up by refreshing. Run `npm run generate-sw` again and
   refresh the page. The change is still not picked up, but the new service worker is shown as `waiting to activate` in
