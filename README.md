@@ -93,7 +93,7 @@ installation. workbox-cli will automatically put hashes of the files in the serv
     workbox.precaching.precacheAndRoute([]);
     ```
 3. Run `npm i -D workbox-cli` to add workbox command line tools to your `devDependencies`.
-4. Run `./node_modules/.bin/workbox-cli wizard --injectManifest`. And manually choose `.` as the root of your web app.
+4. Run `./node_modules/.bin/workbox wizard --injectManifest`. And manually choose `.` as the root of your web app.
 Let the wizard cache all files, by pressing `return` (`space` allows you to unselect and select file types), and let it 
 use `sw-src.js` as a source of your service worker to generate `sw.js`.
 5. Add a npm script called `generate-sw` to your `package.json` which runs `workbox injectManifest`.
